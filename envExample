@@ -1,0 +1,6 @@
+MONGO_URI= mongodb+srv://username:password@kosan.mrvbfkj.mongodb.net/kosan?retryWrites=true&w=majority&appName=kosan
+JWT_SECRET = SECRET
+PORT=5000
+MIDTRANS_SERVER_KEY = Your Midtrants key
+MIDTRANS_APP_URL= https://app.sandbox.midtrans.com
+FRONT_END_URL = http://localhost:5173
