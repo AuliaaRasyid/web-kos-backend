@@ -29,13 +29,13 @@ const userSchema = new mongoose.Schema({
     type: Number,
     required: true,
     unique: true,
+    max: 15, // Ensure no_kamar does not exceed 15
   },
   no_telepon: {
     type: String,
     required: true,
   },
   keluhan: [keluhanSchema], // Array of complaints
-
   tanggal_masuk: {
     type: Date,
     required: true,
