@@ -8,6 +8,7 @@ const {
   createUserAndRegister,
   updateUser,
   deleteUser,
+  updateUserName,
   updateUserPassword,
   createKeluhan,
   getAllComplaints,
@@ -26,8 +27,12 @@ router.route('/users/:id')
   .put(updateUser)          // Update a user by ID
   .delete(deleteUser);      // Delete a user by ID
 
-router.route('/users/:id/change-password') // password change
+router.route('/users/:id/change-name') //change name
+  .put(updateUserName);
+
+router.route('/users/:id/change-password') // change password
   .put(updateUserPassword);
+
 
 router.route('/users/:id/keluhan') // keluhan
   .post(createKeluhan);

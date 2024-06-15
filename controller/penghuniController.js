@@ -113,6 +113,27 @@ const deleteUser = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
+// Update a user's name
+const updateUserName = async (req, res) => {
+    const { id } = req.params;
+    const { name } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({ message: 'Invalid user ID' });
+    }
+
+    try {
+        const user = await userService.updateUser(id, { name });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.status(200).json({ message: 'Name updated successfully', user });
+    } catch (error) {
+        console.error('Error updating user name:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
 
 // Update a user's password
 const updateUserPassword = async (req, res) => {
@@ -144,6 +165,7 @@ const updateUserPassword = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
+
 
 // Create a complaint for a user
 const createKeluhan = async (req, res) => {
@@ -268,6 +290,7 @@ module.exports = {
     createUserAndRegister,
     updateUser,
     deleteUser,
+    updateUserName,
     updateUserPassword,
     createKeluhan,
     getAllComplaints,
