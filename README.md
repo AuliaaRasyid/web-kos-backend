@@ -25,13 +25,13 @@
 Clone the project
 
 ```bash
-  git clone https://github.com/AuliaaRasyid/web-kos-backend.git
+git clone https://github.com/AuliaaRasyid/web-kos-backend.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd web-kos-backend-main
+cd web-kos-backend-main
 ```
 
 ## Installation
@@ -39,7 +39,7 @@ Go to the project directory
 Install my-project with npm
 
 ```bash
-  npm install or npm i
+npm install or npm i
 ```
 
 
@@ -100,7 +100,9 @@ To create the MONGO_URI step by step:
     - database with the name of your specific database (in your case, it's kosan).
 
 7. Replace Your MongoDB URI  
-    - This line:![App Screenshot](https://i.imgur.com/rCGf0Jy.png)
+    - This line:
+
+      ![App Screenshot](https://i.imgur.com/rCGf0Jy.png)
     - Replace the placeholders (username, password, clustername, and database) in the connection string you copied with the actual values.
     - Add it to the `.env`
 
@@ -133,45 +135,45 @@ npm run start
     - **Endpoints:** `/login`
     - **Method:** `post`
     - **Body :**
-    ```json
-    {
-      "username": "string",
-      "password": "string"
-    }
-    ```
+      ```json
+      {
+        "username": "string",
+        "password": "string"
+      }
+      ```
 
 2. Register
     - **Endpoints:** `/register`
     - **Method:** `post`
     - **Body :**
-    ```json
-    {
-      "no_kamar": "Number"
-      "username": "string"
-      "name": "string"
-      "no_telepon": "string"
-      "tanggal_masuk": "date"
-      "password": "string"
-      "role": "string"
-    }
-    ```
+      ```json
+      {
+        "no_kamar": "Number"
+        "username": "string"
+        "name": "string"
+        "no_telepon": "string"
+        "tanggal_masuk": "date"
+        "password": "string"
+        "role": "string"
+      }
+      ```
 
 ### Admin
 1. Create & Register user
     - **Endpoints:** `/users`
     - **Method:** `post`
     - **Body :**
-    ```json
-    { 
-      "no_kamar": "Number"
-      "username": "string"
-      "name": "string"
-      "no_telepon": "string"
-      "tanggal_masuk": "date"
-      "password": "string"
-      "role": "string"
-    }
-    ```
+      ```json
+      { 
+        "no_kamar": "Number"
+        "username": "string"
+        "name": "string"
+        "no_telepon": "string"
+        "tanggal_masuk": "date"
+        "password": "string"
+        "role": "string"
+      }
+      ```
 
 2. Get All user
     - **Endpoints:** `/users`
@@ -210,11 +212,11 @@ npm run start
     - **Endpoints:** `/status`
     - **Method:** `PUT`
     - **Body :**
-    ```json
-    {
-      "availability": "string"
-    }
-    ```
+      ```json
+      {
+        "availability": "string"
+      }
+      ```
 
 ### User
 1. Get user by id
@@ -225,44 +227,44 @@ npm run start
     - **Endpoints:** `/users/:id/keluhan`
     - **Method:** `POST`
     - **Body :**
-    ```json
-    {
-      "keluhan": "string"
-    }
-    ```
+      ```json
+      {
+        "keluhan": "string"
+      }
+      ```
 
 3. Update a User's Name
     - **Endpoints:** `/users/:id/change-name`
     - **Method:** `PUT`
     - **Body :**
-    ```json
-    {
-      "name": "string"
-    }
-    ```
+      ```json
+      {
+        "name": "string"
+      }
+      ```
 
 4. Update a User's Password
     - **Endpoints:** `/users/:id/change-password`
     - **Method:** `PUT`
     - **Body :**
-    ```json
-    {
-      "oldPassword": "string",
-      "newPassword": "string"
-    }
-    ```
+      ```json
+      {
+        "oldPassword": "string",
+        "newPassword": "string"
+      }
+      ```
 
 ### Payment
 1. Create a Payment
     - **Endpoints:** `/payments/create-payment`
     - **Method:** `POST`
     - **Body :**
-    ```json
-    {
-      "userId": "string"
-      "duration": "number"
-    }
-    ```
+      ```json
+      {
+        "userId": "string"
+        "duration": "number"
+      }
+      ```
 
 2. Get Payment by Order ID
     - **Endpoints:** `/payments/:orderId`
@@ -272,12 +274,12 @@ npm run start
     - **Endpoints:**`/payments/update-status`
     - **Method:** `PUT`
     - **Body :**
-    ```json
-    {
-        "orderId": "string",
-        "paymentStatus": "string" 
-    }
-    ```
+      ```json
+      {
+          "orderId": "string",
+          "paymentStatus": "string" 
+      }
+      ```
 
 4. Midtrans Transaction Notification
     - **Endpoints:**`/payments/notification`
