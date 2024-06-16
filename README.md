@@ -62,8 +62,8 @@ FRONT_END_URL = http://localhost:5173
 To create the MONGO_URI step by step:
 
 1. Log in to MongoDB Atlas Dashboard:
-  - Go to MongoDB Atlas.
-  - Log in with your credentials.
+    - Go to MongoDB Atlas.
+    - Log in with your credentials.
 
 2. Navigate to Clusters:
   - Once logged in, you'll land on the MongoDB Atlas dashboard.
