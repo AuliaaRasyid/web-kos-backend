@@ -18,7 +18,9 @@ const paymentSchema = new mongoose.Schema({
   },
   paymentStatus: {
     type: String,
-    required: true
+    required: true,
+    enum: ['PENDING', 'PAID', 'CANCELLED'],  // Validasi untuk memastikan hanya status tertentu yang diterima
+    default: 'PENDING'
   },
   paymentDate: {
     type: Date,
@@ -30,6 +32,15 @@ const paymentSchema = new mongoose.Schema({
   },
   paymentMethod: {
     type: String,
+    default: null  // Field optional, tidak selalu diisi pada saat pembuatan
+  },
+  snap_token: {
+    type: String,
+    required: true
+  },
+  snap_redirect_url: {
+    type: String,
+    required: true
   }
 }, { timestamps: true });
 

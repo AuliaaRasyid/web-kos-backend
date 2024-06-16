@@ -86,7 +86,6 @@ const createPayment = async (req, res) => {
     }
 };
 
-
 const getPaymentbyId = async (req, res) => {
     const { orderId } = req.params;
     try {
@@ -102,16 +101,13 @@ const getPaymentbyId = async (req, res) => {
     }
 };
 
-
 const updatePaymentStatus = async (req, res) => {
     const { orderId, paymentStatus } = req.body;
     try {
-        const payment = await Payment.findById(orderId);
+        const payment = await Payment.findOneAndUpdate({ orderId }, { paymentStatus }, { new: true });
         if (!payment) {
             return res.status(404).json({ message: 'Payment not found' });
         }
-        payment.paymentStatus = paymentStatus;
-        await payment.save();
         res.status(200).json({ message: 'Payment status updated successfully' });
     } catch (error) {
         console.error('Error updating payment status:', error);
@@ -132,20 +128,14 @@ const updateStatusBasedOnMidtransResponse = async (orderId, data) => {
     let transactionStatus = data.transaction_status;
     let fraudStatus = data.fraud_status;
 
-    if (transactionStatus == 'capture') {
-        if (fraudStatus == 'accept') {
-            const payment = await Payment.findOneAndUpdate({ orderId }, { paymentStatus: `PAID`, paymentMethod: data.payment_type }, { new: true });
-            responseData = payment;
-        }
-    } else if (transactionStatus == 'settlement') {
-        const payment = await Payment.findOneAndUpdate({ orderId }, { paymentStatus: 'PAID', paymentMethod: data.payment_type }, { new: true });
-        responseData = payment;
-    } else if (transactionStatus == 'cancel' || transactionStatus == 'deny' || transactionStatus == 'expire') {
-        const payment = await Payment.findOneAndUpdate({ orderId }, { paymentStatus: 'CANCELLED', paymentMethod: data.payment_type }, { new: true });
-        responseData = payment;
-    } else if (transactionStatus == 'pending') {
-        const payment = await Payment.findOneAndUpdate({ orderId }, { paymentStatus: 'PENDING', paymentMethod: data.payment_type }, { new: true });
-        responseData = payment;
+    if (transactionStatus === 'capture' && fraudStatus === 'accept') {
+        responseData = await Payment.findOneAndUpdate({ orderId }, { paymentStatus: 'PAID', paymentMethod: data.payment_type }, { new: true });
+    } else if (transactionStatus === 'settlement') {
+        responseData = await Payment.findOneAndUpdate({ orderId }, { paymentStatus: 'PAID', paymentMethod: data.payment_type }, { new: true });
+    } else if (transactionStatus === 'cancel' || transactionStatus === 'deny' || transactionStatus === 'expire') {
+        responseData = await Payment.findOneAndUpdate({ orderId }, { paymentStatus: 'CANCELLED', paymentMethod: data.payment_type }, { new: true });
+    } else if (transactionStatus === 'pending') {
+        responseData = await Payment.findOneAndUpdate({ orderId }, { paymentStatus: 'PENDING', paymentMethod: data.payment_type }, { new: true });
     }
 
     return { status: 'success', data: responseData };
@@ -172,7 +162,6 @@ const trxNotif = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
-
 
 module.exports = {
     createPayment,
