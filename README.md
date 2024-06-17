@@ -31,7 +31,7 @@ git clone https://github.com/AuliaaRasyid/web-kos-backend.git
 Go to the project directory
 
 ```bash
-cd web-kos-backend-main
+cd web-kos-backend
 ```
 
 ## Installation
